@@ -22,7 +22,11 @@ schedule_date=2019-03-31
 schedule_post=2019-03-31-how-schedule-posts-in-jekyll.md
 schedule_date=2019-03-31
 schedule_post=2019-03-31-configuring-custom-domains-github-pages-part-1.md
+schedule_date=2019-04-01
+schedule_post=2019-04-01-configuring-custom-domains-github-pages-part-2.md
 ```
+
+> This will schedule two posts for 2019-03-31 and one for 2019-04-01.
 
 3. Create a "script" folder on your site root path.
 	- `mkdir script`
