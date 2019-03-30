@@ -2,6 +2,8 @@
 
 > Jekyll Scheduler is a bash script (executed preferably by CircleCI nightly triggers) schedule your posts.
 
+Requires a that you Jekyll repository has a [CircleCI environment](https://z3nth10n.net/en/2019/03/20/jekyll-plugin-issue-with-github-pages) set.
+
 ## Setup steps
 
 0. Clone this repo outside of your Jekyll site.
