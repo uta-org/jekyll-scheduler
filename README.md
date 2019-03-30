@@ -25,7 +25,7 @@ schedule_post=2019-03-31-configuring-custom-domains-github-pages-part-1.md
 3. Create a "script" folder on your site root path.
 	- `mkdir script`
 2. Copy this script and the `ini` file into "script" folder.
-	- `cp sch.ini && cp get_scheduled_posts.sh`
+	- `cp sch.ini <path to your jekyll site>/script/sch.ini && cp get_scheduled_posts.sh <path to your jekyll site>/script/get_scheduled_posts.sh`
 4. Create a folder called "schedule" inside "_posts" folder (**Note:** there will be the scheduled posts)
 	- `cd _posts && mkdir schedule`
 5. Copy this on your `circle.yml` configuration file:
@@ -80,4 +80,4 @@ Become a patron, by simply clicking on this button (**very appreciated!**):
 
 Copyright (c) 2019 z3nth10n (United Teamwork Association).
 
-License: MIT
+License: GNU General Public License v3.0
