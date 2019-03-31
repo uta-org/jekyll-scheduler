@@ -36,35 +36,84 @@ schedule_post=2019-04-01-configuring-custom-domains-github-pages-part-2.md
 	- `cd _posts && mkdir schedule`
 5. Copy this on your `circle.yml` configuration file:
 
+#### Don't use this method!
+
+> ```yaml
+> defaults: &defaults
+>     working_directory: ~/repo
+>     
+> version: 2
+> jobs:
+>   # Your jobs here... 
+>     schedule_posts:
+>         <<: *defaults
+>         docker:
+>           - image: circleci/ruby:2.6.0-node
+>         filters:
+>             branches:
+>                 only:
+>                   - gh-pages-ci
+>                 ignore:
+>                   - master
+>         steps:
+>             - checkout 
+>             - run:
+>                 name: Executing scheduler
+>                 command: bash ~/repo/script/get_scheduled_posts.sh
+> workflows:
+>     version: 2
+>     test-deploy:
+>         jobs:
+>             - schedule_posts:
+>                 filters:
+>                     branches:
+>                         only:
+>                           - gh-pages-ci
+>                         ignore:
+>                           - master              
+>     nightly:
+>         triggers:
+>             - schedule:
+>                 cron: "0 0 * * *"
+>                 filters:
+>                     branches:
+>                         only:
+>                             - gh-pages-ci
+>                         ignore:
+>                             - master
+>         jobs:
+>             - schedule_posts
+> ```
+>
+> **Note:** This will execute the scheduler any time you make a push. Or every day at 12AM.
+
+**Note2:** This is not the optimal way to accomplish the task, I strongly recommend you to use this as an unique step in your main job, and put this after `checkout` happens. See [my example at this file](https://github.com/z3nth10n/z3nth10n.github.io/blob/4500f380cd722a25e83108d5335edb87a9a3274e/circle.yml#L23).
+
 ```yaml
-defaults: &defaults
-    working_directory: ~/repo
-    
-version: 2
-jobs:
-	# Your jobs here... 
-    schedule_posts:
-        <<: *defaults
-        docker:
-          - image: circleci/ruby:2.6.0-node
-        filters:
-            branches:
-                only:
-                  - gh-pages-ci
-                ignore:
-                  - master
-        steps:
             - run:
                 name: Executing scheduler
                 command: bash ~/repo/script/get_scheduled_posts.sh
-workflows:
-    version: 2
-    test-deploy:
-        jobs:
-            - schedule_posts
 ```
 
-6. Enjoy!
+6. You'll need to sync all your scheduled posts in local, for accomplish that create a Bash alias in your environment to automatize this on the local-side.
+
+For this, you'll need to download `scheduler-alias.sh`, with the following command:
+
+`wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ~/UnitedTeamworkAssociation/scheduler-alias.sh`
+
+And then, create an alias for it:
+
+`git config --global alias.publish "!script=\"$HOME/UnitedTeamworkAssociation/scheduler-alias.sh\" && bash \"$script\""`
+
+All together:
+
+`wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ${HOME}/UnitedTeamworkAssociation/scheduler-alias.sh && git config --global alias.publish "!script=\"$HOME/UnitedTeamworkAssociation/scheduler-alias.sh\" && bash \"$script\""`
+
+So, instead of using `git push` use `git publish`.
+
+**Note:** This command must be called from you repository root.
+
+7. Enjoy!
 
 ### How does the script works?
 

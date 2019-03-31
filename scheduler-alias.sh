@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash
 
 IFS="="
 
@@ -13,11 +13,9 @@ do
         schedule_post="$value"
 
         # Then do the magic
-        if [[ $schedule_date == "$(date +%Y-%m-%d)" && -d ~/repo/ ]]; then
+        if [[ $schedule_date == "$(date +%Y-%m-%d)" ]]; then
         	echo "Publishing post: $schedule_post"
-            mv ~/repo/scheduled-posts/$schedule_post ~/repo/_posts/$schedule_post
-        elif [[ ! -d ~/repo/ ]]; then
-            echo "You have bad configuration on circle.yml ($schedule_post)"
+            mv "$PWD/scheduled-posts/$schedule_post" "$PWD/$schedule_post"
         fi
     fi
-done < "script/sch.ini"
+done < "$PWD/script/sch.ini"
