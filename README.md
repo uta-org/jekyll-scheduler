@@ -32,8 +32,8 @@ schedule_post=2019-04-01-configuring-custom-domains-github-pages-part-2.md
 	- `mkdir script`
 2. Copy this script and the `ini` file into "script" folder.
 	- `cp sch.ini <path to your jekyll site>/script/sch.ini && cp get_scheduled_posts.sh <path to your jekyll site>/script/get_scheduled_posts.sh`
-4. Create a folder called "schedule" inside "_posts" folder. (**Note:** there will be the scheduled posts)
-	- `cd _posts && mkdir schedule`
+4. Create a folder called "scheduled-posts" inside your site root folder.
+	- `mkdir scheduled-posts`
 5. Copy this on your `circle.yml` configuration file:
 
 #### Don't use this method!
@@ -95,7 +95,7 @@ schedule_post=2019-04-01-configuring-custom-domains-github-pages-part-2.md
                 command: bash ~/repo/script/get_scheduled_posts.sh
 ```
 
-6. You'll need to sync all your scheduled posts in local, for accomplish that create a Bash alias in your environment to automatize this on the local-side.
+6. You'll need to sync all your scheduled posts in local, for accomplish that create a Git alias in your environment to automatize this on the local-side.
 
 For this, you'll need to download `scheduler-alias.sh`, with the following command:
 
@@ -117,7 +117,7 @@ So, instead of using `git push` use `git publish`.
 
 ### How does the script works?
 
-It simply copies the files required by the date from the "schedule" folder to the "_posts" one.
+It simply copies the files required by the date from the "scheduled-posts" folder to the "_posts" one.
 
 So, just simply write posts as you normally do.
 
