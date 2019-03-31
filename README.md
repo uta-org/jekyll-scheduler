@@ -103,11 +103,11 @@ For this, you'll need to download `scheduler-alias.sh`, with the following comma
 
 And then, create an alias for it:
 
-`git config --global alias.publish "!script=\"$HOME/UnitedTeamworkAssociation/scheduler-alias.sh\" && bash \"$script\""`
+`git config --global alias.publish '!script="$HOME/UnitedTeamworkAssociation/scheduler-alias.sh" && bash "$script"'`
 
 All together:
 
-`wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ${HOME}/UnitedTeamworkAssociation/scheduler-alias.sh && git config --global alias.publish "!script=\"$HOME/UnitedTeamworkAssociation/scheduler-alias.sh\" && bash \"$script\""`
+`wget https://raw.githubusercontent.com/uta-org/jekyll-scheduler/master/scheduler-alias.sh -O ${HOME}/UnitedTeamworkAssociation/scheduler-alias.sh && git config --global alias.publish '!script="$HOME/UnitedTeamworkAssociation/scheduler-alias.sh" && bash "$script"'`
 
 So, instead of using `git push` use `git publish`.
 
