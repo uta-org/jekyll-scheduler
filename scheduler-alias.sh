@@ -19,3 +19,7 @@ do
         fi
     fi
 done < "$PWD/script/sch.ini"
+
+git add .
+git commit -m "Publishing posts"
+git push -u origin master
