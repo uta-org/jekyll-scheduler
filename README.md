@@ -121,6 +121,12 @@ It simply copies the files required by the date from the "scheduled-posts" folde
 
 So, just simply write posts as you normally do.
 
+## Scheduler Gotcha
+
+This feature is already implemented on Jekyll, just use `future: false` and post that are on a future date will not be visible. But you still will need the nightly triggers from CircleCI.
+
+Also, this can be useful for old Jekyll sites.
+
 ## Issues
 
 Having issues? Just report in [the issue section](/issues). **Thanks for the feedback!**
