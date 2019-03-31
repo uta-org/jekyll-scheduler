@@ -15,7 +15,7 @@ do
         # Then do the magic
         if [[ $schedule_date == "$(date +%Y-%m-%d)" ]]; then
         	echo "Publishing post: $schedule_post"
-            mv "$PWD/scheduled-posts/$schedule_post" "$PWD/$schedule_post"
+            mv "$PWD/scheduled-posts/$schedule_post" "$PWD/_posts/$schedule_post"
         fi
     fi
 done < "$PWD/script/sch.ini"
